@@ -90,7 +90,6 @@ else{
     <span id=jstest class=ninja></span>
     <span class='ninja smalltext'>
       <a href='https://github.com/LukaszMoskala/OpenDHT' class='ninjalink'>OpenDHT</a> &copy; 2019 Łukasz Konrad Moskała &lt;<a class='ninjalink' href='mailto:lm@lukaszmoskala.pl'>lm@lukaszmoskala.pl</a>&gt;<br/>
-      System stworzony bez użycia <a href='https://www.gnu.org/proprietary/proprietary.html' class='ninjalink'>własnościowego oprogramowania</a><br/>
     </span>
   </body>
 </html>
