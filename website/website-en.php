@@ -25,74 +25,8 @@ else{
 <html>
   <head>
     <title>OpenDHT</title>
-    <style>
-      * {
-        font-family: 'Ubuntu mono', monospace;
-        font-size: 120%;
-      }
-      body {
-        background-color: #222222;
-        color: white;
-        text-align: center;
-      }
-      .value {
-        color: cyan;
-        font-size: 800%;
-      }
-      .lbl {
-        color: yellow;
-        font-size: 600%;
-      }
-      .ninja {
-        color: #444444;
-        text-decoration: none;
-      }
-      .ninjalink {
-        text-decoration: none;
-        color: #666666;
-      }
-      .smalltext {
-        font-size: 80%;
-      }
-    </style>
-    <script src="plotly.min.js"></script>
+    <link href='style.css' rel='stylesheet'>
     <script type="text/javascript">
-      function plotPlot() {
-
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.onreadystatechange = function() { 
-          if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            var data=JSON.parse(xmlHttp.responseText);
-
-            var layout1 = {
-              title: 'Temperature',
-            };
-            var layout2 = {
-              title: 'Humidity',
-            };
-            
-            var d1 = [
-              {
-                y: data.temp,
-                x: data.ts,
-                type: 'scatter'
-              }
-            ];
-            var d2 = [
-              {
-                y: data.hum,
-                x: data.ts,
-                type: 'scatter'
-              }
-            ];
-            Plotly.newPlot('plot2',d2, layout2);
-            Plotly.newPlot('plot1',d1, layout1);
-            
-          }
-        }
-        xmlHttp.open("GET", "fetch-plot-data.php", true);
-        xmlHttp.send(null);
-      }
       function fetchData() {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function() { 
@@ -126,9 +60,6 @@ else{
     <div id=plot2></div>
     <span class='ninja'>
       Timestamp: <span id=ts><?=$r['ts']; ?></span><br/>
-    </span>
-    <span class=ninja onclick='plotPlot()'>
-      Click here to view plots<br/>
     </span>
     <span id=jstest class=ninja></span>
     <span class='ninja smalltext'>

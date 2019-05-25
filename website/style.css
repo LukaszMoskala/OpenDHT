@@ -1,0 +1,28 @@
+* {
+  font-family: 'Ubuntu mono', monospace;
+  font-size: 120%;
+}
+body {
+  background-color: #222222;
+  color: white;
+  text-align: center;
+}
+.value {
+  color: cyan;
+  font-size: 800%;
+}
+.lbl {
+  color: yellow;
+  font-size: 600%;
+}
+.ninja {
+  color: #444444;
+  text-decoration: none;
+}
+.ninjalink {
+  text-decoration: none;
+  color: #666666;
+}
+.smalltext {
+  font-size: 80%;
+}
