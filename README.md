@@ -12,16 +12,15 @@ On more powerfull server (I use VPS for that, you can use Raspberry pi or really
 which connects to sensor, receives data, and saves it to MySQL database.
 
 On the same server, you can setup website that shows current temperature
-and humidity. You can see [live example here](https://lukaszmoskala.pl/dht22.php).
+and humidity. You can see [live example here](https://lukaszmoskala.pl/OpenDHT/website-en.php).
 
 # Scripting API
-website provides API for [raw data](https://lukaszmoskala.pl/dht22.php?raw=1) and [JSON data](https://lukaszmoskala.pl/dht22.php?json=1)
+website provides API for [raw data](https://lukaszmoskala.pl/OpenDHT/website-en.php?raw=1) and [JSON data](https://lukaszmoskala.pl/OpenDHT/website-en.php?json=1)
 
 # Todo
 ```
 Integration with OpenWeatherMap
 Support for more platforms
 Support for more sensors
-Generate plots (possibly using gnuplot)
 Support for more than one sensor in database
 ```
