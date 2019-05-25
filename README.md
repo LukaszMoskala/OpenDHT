@@ -13,7 +13,8 @@ which connects to sensor, receives data, and saves it to MySQL database.
 
 On the same server, you can setup website that shows current temperature
 and humidity. You can see [live example here](https://lukaszmoskala.pl/OpenDHT/website-en.php).
-
+# Plots
+Plots are generated in browser, using plot.ly. See example [here](https://lukaszmoskala.pl/OpenDHT/plots-en.php)
 # Scripting API
 website provides API for [raw data](https://lukaszmoskala.pl/OpenDHT/website-en.php?raw=1) and [JSON data](https://lukaszmoskala.pl/OpenDHT/website-en.php?json=1)
 
