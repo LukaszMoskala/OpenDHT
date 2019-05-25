@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OpenDHT - Wykresy</title>
+    <title>OpenDHT - Plots</title>
     <link href='style.css' rel='stylesheet'>
     <script src="plotly.min.js"></script>
     <script type="text/javascript">
