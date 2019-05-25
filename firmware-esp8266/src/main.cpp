@@ -10,6 +10,16 @@
 
 #define SERVER_PORT 80 //port 80 is default HTTP port
 
+//UNCOMMENT IF USING INSERT.PHP INSTEAD OF FETCH.PHP
+//this is  U N T E S T E D !
+//you'r welcome to report if it works to me
+//that is, lm@lukaszmoskala.pl
+//or open issue on github project page
+
+// #define SERVER_ADDR "example.com"
+// String insert_uri="/OpenDHT/insert.php";
+// #define INSERT_DELAY 300000
+
 #define WIFI_SSID "put-your-wifi-ssid-here"
 #define WIFI_PSK "put-your-wifi-password-here"
 //END OF CONFIGURATION
@@ -68,6 +78,9 @@ void setup() {
   server.on("/", handleRootPath);
   server.begin();
 }
+#ifdef SERVER_ADDR
+  uint32_t lastInsertTime = 0;
+#endif
 void loop() {
   //read temperature every 5 seconds
   if(millis() - lm > 5000) {
@@ -88,6 +101,19 @@ void loop() {
   }
   //check if we have incoming connection
   server.handleClient();
+  //insert mode (untested!)
+  #ifdef SERVER_ADDR
+    if(millis() - lastInsertTime >= INSERT_DELAY) {
+      String req="GET "+insert_uri+"?temp="+String(t)+"&hum="+String(h)+" HTTP/1.1\r\nHost: "+SERVER_ADDR+"\r\nConnection: close\r\n\r\n";
+      WiFiClient client;
+      if(client.connect(SERVER_ADDR, 80)) {
+        client.print(req);
+      }
+      delay(300);
+      client.stop();
+      lastinsert=millis();
+    }
+  #endif
   //blink led on lost connection until connected
   //again
   while (WiFi.status() != WL_CONNECTED) {
