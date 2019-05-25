@@ -73,6 +73,18 @@ void loop() {
   if(millis() - lm > 5000) {
     h = dht.readHumidity();
     t = dht.readTemperature();
+    // If you want to display measurements to LCD
+    // you probably want to do it more or less like
+    // this:
+    
+    // lcd.clear();
+    // lcd.print("Temp: ");
+    // lcd.print(t);
+    // lcd.print(" *C");
+    // lcd.setCursor(0,1);
+    // lcd.print("Hum:  ");
+    // lcd.print(h);
+    // lcd.print(" %");
   }
   //check if we have incoming connection
   server.handleClient();
