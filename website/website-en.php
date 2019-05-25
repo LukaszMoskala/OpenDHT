@@ -65,10 +65,10 @@ else{
             var data=JSON.parse(xmlHttp.responseText);
 
             var layout1 = {
-              title: 'Temperatura',
+              title: 'Temperature',
             };
             var layout2 = {
-              title: 'Wilgotność',
+              title: 'Humidity',
             };
             
             var d1 = [
@@ -128,7 +128,7 @@ else{
       Timestamp: <span id=ts><?=$r['ts']; ?></span><br/>
     </span>
     <span class=ninja onclick='plotPlot()'>
-      Click here to viev plot<br/>
+      Click here to view plots<br/>
     </span>
     <span id=jstest class=ninja></span>
     <span class='ninja smalltext'>
