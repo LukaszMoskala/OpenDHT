@@ -11,29 +11,49 @@
           if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             var data=JSON.parse(xmlHttp.responseText);
 
-            var layout1 = {
-              title: 'Temperature',
-            };
-            var layout2 = {
-              title: 'Humidity',
-            };
-            
-            var d1 = [
+            var d1 = 
               {
                 y: data.temp,
                 x: data.ts,
-                type: 'scatter'
-              }
-            ];
-            var d2 = [
+                type: 'scatter',
+                name: 'Temperature'
+              };
+            var d2 = 
               {
                 y: data.hum,
                 x: data.ts,
-                type: 'scatter'
+                type: 'scatter',
+                name: 'Humidity',
+                yaxis: 'y2'
               }
-            ];
-            Plotly.newPlot('plot1',d1, layout1);
-            Plotly.newPlot('plot2',d2, layout2);
+            ;
+            var ddd = [d1, d2];
+            var layout = {
+              showlegend: false,
+              title: 'OpenDHT',
+              titlefont: {color: '#fff'},
+              plot_bgcolor: '#333333',
+              paper_bgcolor: '#222222',
+              yaxis: {
+                title: 'Temperature',
+                titlefont: {color: '#fff'},
+                tickfont: {color: '#fff'},
+                side: 'left'
+              },
+              yaxis2: {
+                title: 'Humidity',
+                titlefont: {color: '#fff'},
+                tickfont: {color: '#fff'},
+                overlaying: 'y',
+                side: 'right',
+                position: 1
+              },
+              xaxis: {
+                color: '#fff'
+              },
+              clickmode: false
+            };
+            Plotly.newPlot('plot1',ddd, layout,{displayModeBar: false, locale: 'pl'});
           }
         }
         var dh=document.getElementById('date_input');
@@ -49,7 +69,6 @@
   </head>
   <body onLoad='plotPlot()'>
     <div id='plot1'></div>
-    <div id='plot2'></div>
     <input type='text' id='date_input' placeholder='YYYY-MM-DD'>
     <button onClick='plotPlot()'>Refresh</button><br/>
     <span class='ninja smalltext'>

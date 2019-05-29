@@ -4,6 +4,7 @@
     <title>OpenDHT - Wykresy</title>
     <link href='style.css' rel='stylesheet'>
     <script src="plotly.min.js"></script>
+    <script src="plotly-locale-pl.js"></script>
     <script type="text/javascript">
       function plotPlot() {
         var xmlHttp = new XMLHttpRequest();
@@ -11,29 +12,49 @@
           if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             var data=JSON.parse(xmlHttp.responseText);
 
-            var layout1 = {
-              title: 'Temperatura',
-            };
-            var layout2 = {
-              title: 'Wilgotność',
-            };
-            
-            var d1 = [
+            var d1 = 
               {
                 y: data.temp,
                 x: data.ts,
-                type: 'scatter'
-              }
-            ];
-            var d2 = [
+                type: 'scatter',
+                name: 'Temperatura'
+              };
+            var d2 = 
               {
                 y: data.hum,
                 x: data.ts,
-                type: 'scatter'
+                type: 'scatter',
+                name: 'Wilgotność',
+                yaxis: 'y2'
               }
-            ];
-            Plotly.newPlot('plot1',d1, layout1);
-            Plotly.newPlot('plot2',d2, layout2);
+            ;
+            var ddd = [d1, d2];
+            var layout = {
+              showlegend: false,
+              title: 'OpenDHT',
+              titlefont: {color: '#fff'},
+              plot_bgcolor: '#333333',
+              paper_bgcolor: '#222222',
+              yaxis: {
+                title: 'Temperatura',
+                titlefont: {color: '#fff'},
+                tickfont: {color: '#fff'},
+                side: 'left'
+              },
+              yaxis2: {
+                title: 'Wilgotność',
+                titlefont: {color: '#fff'},
+                tickfont: {color: '#fff'},
+                overlaying: 'y',
+                side: 'right',
+                position: 1
+              },
+              xaxis: {
+                color: '#fff'
+              },
+              clickmode: false
+            };
+            Plotly.newPlot('plot1',ddd, layout,{displayModeBar: false, locale: 'pl'});
           }
         }
         var dh=document.getElementById('date_input');
@@ -49,7 +70,6 @@
   </head>
   <body onLoad='plotPlot()'>
     <div id='plot1'></div>
-    <div id='plot2'></div>
     <input type='text' id='date_input' placeholder='RRRR-MM-DD'>
     <button onClick='plotPlot()'>Odśwież</button><br/>
     <span class='ninja smalltext'>
