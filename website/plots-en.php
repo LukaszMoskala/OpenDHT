@@ -3,7 +3,9 @@
   <head>
     <title>OpenDHT - Plots</title>
     <link href='style.css' rel='stylesheet'>
+    <link href='DatePickerX.min.css' rel='stylesheet'>
     <script src="plotly.min.js"></script>
+    <script src="DatePickerX.min.js"></script>
     <script type="text/javascript">
       function plotPlot() {
         var xmlHttp = new XMLHttpRequest();
@@ -70,6 +72,13 @@
         }
         xmlHttp.send(null);
       }
+      window.addEventListener('DOMContentLoaded', function()
+        {
+          var myDatepicker = document.getElementById('date_input');
+          myDatepicker.DatePickerX.init({
+            format: "yyyy-mm-dd"
+          });
+        });
     </script>
   </head>
   <body onLoad='plotPlot()'>
