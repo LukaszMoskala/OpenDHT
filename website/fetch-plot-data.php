@@ -12,11 +12,19 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+
+$whereval="CURRENT_DATE()";
+
+
 $mysqli=mysqli_connect("localhost", "dht","","dht");
 if(!$mysqli)
   die(mysqli_error($mysqli));
 
-$q=$mysqli->query("SELECT `ts`,`temp`,`hum` FROM `data` WHERE date(`ts`) = CURRENT_DATE() ORDER BY `ts` ASC");
+if(isset($_GET['date'])) {
+  $whereval = "'".$mysqli->real_escape_string($_GET['date'])."'";
+}
+
+$q=$mysqli->query("SELECT `ts`,`temp`,`hum` FROM `data` WHERE date(`ts`) = $whereval ORDER BY `ts` ASC");
 if(!$q)
   die(mysqli_error($mysqli));
 

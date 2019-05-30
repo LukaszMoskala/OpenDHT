@@ -18,7 +18,9 @@
   <head>
     <title>OpenDHT - Plots</title>
     <link href='style.css' rel='stylesheet'>
+    <link href='DatePickerX.min.css' rel='stylesheet'>
     <script src="plotly.min.js"></script>
+    <script src="DatePickerX.min.js"></script>
     <script type="text/javascript">
       function plotPlot() {
         var xmlHttp = new XMLHttpRequest();
@@ -26,39 +28,78 @@
           if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             var data=JSON.parse(xmlHttp.responseText);
 
-            var layout1 = {
-              title: 'Temperature',
-            };
-            var layout2 = {
-              title: 'Humidity',
-            };
-            
-            var d1 = [
+            var d1 = 
               {
                 y: data.temp,
                 x: data.ts,
-                type: 'scatter'
-              }
-            ];
-            var d2 = [
+                type: 'scatter',
+                name: 'Temperature',
+                hoverinfo: 'all'
+              };
+            var d2 = 
               {
                 y: data.hum,
                 x: data.ts,
-                type: 'scatter'
+                type: 'scatter',
+                name: 'Humidity',
+                yaxis: 'y2',
+                hoverinfo: 'all'
               }
-            ];
-            Plotly.newPlot('plot1',d1, layout1);
-            Plotly.newPlot('plot2',d2, layout2);
+            ;
+            var ddd = [d1, d2];
+            var layout = {
+              showlegend: false,
+              title: 'OpenDHT',
+              titlefont: {color: '#fff'},
+              plot_bgcolor: '#333333',
+              paper_bgcolor: '#222222',
+              yaxis: {
+                title: 'Temperature',
+                titlefont: {color: '#fff'},
+                tickfont: {color: '#fff'},
+                side: 'left',
+                fixedrange: true
+              },
+              yaxis2: {
+                title: 'Humidity',
+                titlefont: {color: '#fff'},
+                tickfont: {color: '#fff'},
+                overlaying: 'y',
+                side: 'right',
+                position: 1,
+                fixedrange: true
+              },
+              xaxis: {
+                color: '#fff',
+                fixedrange: true
+              },
+              clickmode: false
+            };
+            Plotly.newPlot('plot1',ddd, layout,{displayModeBar: false, locale: 'pl'});
           }
         }
-        xmlHttp.open("GET", "fetch-plot-data.php", true);
+        var dh=document.getElementById('date_input');
+        if(dh.value.length > 0) {
+          xmlHttp.open("GET", "fetch-plot-data.php?date="+dh.value, true);
+        }
+        else {
+          xmlHttp.open("GET", "fetch-plot-data.php", true);
+        }
         xmlHttp.send(null);
       }
+      window.addEventListener('DOMContentLoaded', function()
+        {
+          var myDatepicker = document.getElementById('date_input');
+          myDatepicker.DatePickerX.init({
+            format: "yyyy-mm-dd"
+          });
+        });
     </script>
   </head>
   <body onLoad='plotPlot()'>
     <div id='plot1'></div>
-    <div id='plot2'></div>
+    <input type='text' id='date_input' placeholder='YYYY-MM-DD'>
+    <button onClick='plotPlot()'>Refresh</button><br/>
     <span class='ninja smalltext'>
       <a href='https://github.com/LukaszMoskala/OpenDHT' class='ninjalink'>OpenDHT</a> &copy; 2019 Łukasz Konrad Moskała &lt;<a class='ninjalink' href='mailto:lm@lukaszmoskala.pl'>lm@lukaszmoskala.pl</a>&gt;<br/>
       <a href='https://plot.ly' class='ninjalink'>Plot.ly</a> is used to generate plots<br/>

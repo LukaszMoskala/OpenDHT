@@ -71,8 +71,7 @@ else{
     <label for='temp' class='lbl'>Temperature</label><br/><span class='value' id=temp><?=$r['temp']; ?>&#176;C</span><br/>
     <label for='hum' class='lbl'>Humidity</label><br/><span class='value' id=hum><?=$r['hum']; ?>%</span><br/>
     <br/>
-    <div id=plot1></div>
-    <div id=plot2></div>
+    <a class='ninjalink' href='plots-en.php'>Plots</a><br/>
     <span class='ninja'>
       Timestamp: <span id=ts><?=$r['ts']; ?></span><br/>
     </span>

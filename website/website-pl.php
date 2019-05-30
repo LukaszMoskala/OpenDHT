@@ -70,8 +70,7 @@ else{
     <label for='temp' class='lbl'>Temperatura</label><br/><span class='value' id=temp><?=$r['temp']; ?>&#176;C</span><br/>
     <label for='hum' class='lbl'>Wilgotność</label><br/><span class='value' id=hum><?=$r['hum']; ?>%</span><br/>
     <br/>
-    <div id=plot1></div>
-    <div id=plot2></div>
+    <a class='ninjalink' href='plots-pl.php'>Wykresy</a><br/>
     <span class='ninja'>
       Czas odczytu danych: <span id=ts><?=$r['ts']; ?></span><br/>
     </span>
