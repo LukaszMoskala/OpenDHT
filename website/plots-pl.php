@@ -17,7 +17,8 @@
                 y: data.temp,
                 x: data.ts,
                 type: 'scatter',
-                name: 'Temperatura'
+                name: 'Temperatura',
+                hoverinfo: 'all'
               };
             var d2 = 
               {
@@ -25,7 +26,8 @@
                 x: data.ts,
                 type: 'scatter',
                 name: 'Wilgotność',
-                yaxis: 'y2'
+                yaxis: 'y2',
+                hoverinfo: 'all'
               }
             ;
             var ddd = [d1, d2];
@@ -39,7 +41,8 @@
                 title: 'Temperatura',
                 titlefont: {color: '#fff'},
                 tickfont: {color: '#fff'},
-                side: 'left'
+                side: 'left',
+                fixedrange: true
               },
               yaxis2: {
                 title: 'Wilgotność',
@@ -47,10 +50,12 @@
                 tickfont: {color: '#fff'},
                 overlaying: 'y',
                 side: 'right',
-                position: 1
+                position: 1,
+                fixedrange: true
               },
               xaxis: {
-                color: '#fff'
+                color: '#fff',
+                fixedrange: true
               },
               clickmode: false
             };

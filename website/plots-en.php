@@ -16,7 +16,8 @@
                 y: data.temp,
                 x: data.ts,
                 type: 'scatter',
-                name: 'Temperature'
+                name: 'Temperature',
+                hoverinfo: 'all'
               };
             var d2 = 
               {
@@ -24,7 +25,8 @@
                 x: data.ts,
                 type: 'scatter',
                 name: 'Humidity',
-                yaxis: 'y2'
+                yaxis: 'y2',
+                hoverinfo: 'all'
               }
             ;
             var ddd = [d1, d2];
@@ -38,7 +40,8 @@
                 title: 'Temperature',
                 titlefont: {color: '#fff'},
                 tickfont: {color: '#fff'},
-                side: 'left'
+                side: 'left',
+                fixedrange: true
               },
               yaxis2: {
                 title: 'Humidity',
@@ -46,10 +49,12 @@
                 tickfont: {color: '#fff'},
                 overlaying: 'y',
                 side: 'right',
-                position: 1
+                position: 1,
+                fixedrange: true
               },
               xaxis: {
-                color: '#fff'
+                color: '#fff',
+                fixedrange: true
               },
               clickmode: false
             };
