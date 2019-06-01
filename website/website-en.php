@@ -15,11 +15,13 @@
 */
 
 //This is a website
-$mysqli=mysqli_connect("localhost", "dht","","dht");
-if(!$mysqli)
-  die(mysqli_error($mysqli));
+require 'config.php';
+$where="WHERE `sensorid`='1'";
+if(isset($_GET['sensorid'])) {
+  $where="WHERE `sensorid`='".$mysqli->real_escape_string($_GET['sensorid'])."'";
+}
 
-$q=$mysqli->query("SELECT `ts`,`temp`,`hum` FROM `data` ORDER BY `ts` DESC LIMIT 1");
+$q=$mysqli->query("SELECT `ts`,`temp`,`hum` FROM `data` $where ORDER BY `ts` DESC LIMIT 1");
 if(!$q)
   die(mysqli_error($mysqli));
 $r=mysqli_fetch_assoc($q);
@@ -52,7 +54,8 @@ else{
             document.getElementById('ts').innerHTML=data.ts;
           }
         }
-        xmlHttp.open("GET", location.href+"?json=1", true);
+        var sensorid=document.getElementById('sensorselect').value;
+        xmlHttp.open("GET", location.href+"?json=1&sensorid="+sensorid, true);
         xmlHttp.send(null);
       }
       function test_javascript() {
@@ -68,6 +71,19 @@ else{
       it's disabled. Auto-refresh will not work, you have to<br/>
       refresh page manually.<br/>
     </noscript>
+    <select id=sensorselect onChange='fetchData()'>
+<?php
+
+
+$qqq=$mysqli->query("SELECT `location`,`type`,`id` FROM `sensors`");
+while($r2 = mysqli_fetch_row($qqq)) {
+  $id=$r2[2];
+  $type=$r2[1];
+  $loc=$r2[0];
+  echo "<option value='$id'>$loc - $type</option>";
+}
+?>
+    </select><br/>
     <label for='temp' class='lbl'>Temperature</label><br/><span class='value' id=temp><?=$r['temp']; ?>&#176;C</span><br/>
     <label for='hum' class='lbl'>Humidity</label><br/><span class='value' id=hum><?=$r['hum']; ?>%</span><br/>
     <br/>
