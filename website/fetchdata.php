@@ -21,15 +21,38 @@ if(php_sapi_name() != "cli")
 
 require 'config.php';
 
-$data=file_get_contents("http://$DHT_IP/");
-$x=explode(" ",$data);
-if(!isset($x[0])) {
-  //no data received, exit gracefully
-  die();
+$qqq=$mysqli->query("SELECT `addr`,`type`,`id` FROM `sensors`");
+while($r = mysqli_fetch_row($qqq)) {
+  $addr=$r[0];
+  $type=$r[1];
+  $data="";
+  if($type == 'esp8266-http') {
+    $data=file_get_contents("http://$addr/");
+  }
+  else if($type == 'local-tmp') {
+    $data=file_get_contents("/tmp/dht");
+  }
+  else if($type == 'local-shm') {
+    $data=file_get_contents("/dev/shm/dht");
+  }
+  else if($type == "esp8266-tcp") {
+    $data="";
+    echo "$type is not implemented yet.\n";
+  }
+  if(strlen($data) > 0) {
+    $x=explode(" ",$data);
+    if(!isset($x[0])) {
+      continue;
+    }
+    $h = $mysqli->real_escape_string($x[0]);
+    $t = $mysqli->real_escape_string($x[1]);
+    $i = $mysqli->real_escape_string($r[2]); //yes, $r is correct here
+    $q=$mysqli->query("INSERT INTO `data`(`temp`,`hum`,`sensorid`) VALUES('$t','$h','$i')");
+    if(!$q) {
+      echo mysqli_error($mysqli)."\n";
+      continue;
+    }
+  }
 }
-$h = $mysqli->real_escape_string($x[0]);
-$t = $mysqli->real_escape_string($x[1]);
 
-$q=$mysqli->query("INSERT INTO `data`(`temp`,`hum`) VALUES('$t','$h')");
-if(!$q)
-  die(mysqli_error($mysqli));
+

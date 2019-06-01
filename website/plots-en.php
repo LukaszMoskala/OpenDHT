@@ -79,11 +79,12 @@
           }
         }
         var dh=document.getElementById('date_input');
+        var sensorid=document.getElementById('sensorselect').value;
         if(dh.value.length > 0) {
-          xmlHttp.open("GET", "fetch-plot-data.php?date="+dh.value, true);
+          xmlHttp.open("GET", "fetch-plot-data.php?date="+dh.value+"&sensorid="+sensorid, true);
         }
         else {
-          xmlHttp.open("GET", "fetch-plot-data.php", true);
+          xmlHttp.open("GET", "fetch-plot-data.php?sensorid="+sensorid, true);
         }
         xmlHttp.send(null);
       }
@@ -99,6 +100,20 @@
   <body onLoad='plotPlot()'>
     <div id='plot1'></div>
     <input type='text' id='date_input' placeholder='YYYY-MM-DD'>
+    <select id=sensorselect onChange='fetchData()'>
+<?php
+
+require 'config.php';
+
+$qqq=$mysqli->query("SELECT `location`,`type`,`id` FROM `sensors`");
+while($r2 = mysqli_fetch_row($qqq)) {
+  $id=$r2[2];
+  $type=$r2[1];
+  $loc=$r2[0];
+  echo "<option value='$id'>$loc - $type</option>";
+}
+?>
+    </select>
     <button onClick='plotPlot()'>Refresh</button><br/>
     <span class='ninja smalltext'>
       <a href='https://github.com/LukaszMoskala/OpenDHT' class='ninjalink'>OpenDHT</a> &copy; 2019 Łukasz Konrad Moskała &lt;<a class='ninjalink' href='mailto:lm@lukaszmoskala.pl'>lm@lukaszmoskala.pl</a>&gt;<br/>

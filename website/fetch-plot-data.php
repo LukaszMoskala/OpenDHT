@@ -16,15 +16,17 @@
 $whereval="CURRENT_DATE()";
 
 
-$mysqli=mysqli_connect("localhost", "dht","","dht");
-if(!$mysqli)
-  die(mysqli_error($mysqli));
+require 'config.php';
 
 if(isset($_GET['date'])) {
   $whereval = "'".$mysqli->real_escape_string($_GET['date'])."'";
 }
+$sid=1;
+if(isset($_GET['sensorid'])) {
+  $sid=$mysqli->real_escape_string($_GET['sensorid']);
+}
 
-$q=$mysqli->query("SELECT `ts`,`temp`,`hum` FROM `data` WHERE date(`ts`) = $whereval ORDER BY `ts` ASC");
+$q=$mysqli->query("SELECT `ts`,`temp`,`hum` FROM `data` WHERE date(`ts`) = $whereval AND `sensorid`='$sid' ORDER BY `ts` ASC");
 if(!$q)
   die(mysqli_error($mysqli));
 
