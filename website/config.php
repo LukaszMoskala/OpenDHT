@@ -9,9 +9,6 @@ $DB_IP = "localhost";
 $DB_USER = "dht";
 $DB_PASS = "";
 $DB_DATABASE = "dht";
-//ip of sensor
-$DHT_IP="10.2.0.187";
-
 
 $mysqli=mysqli_connect("localhost", "dht","","dht");
 if(!$mysqli)
