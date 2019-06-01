@@ -86,6 +86,7 @@ void loop() {
   if(millis() - lm > 5000) {
     h = dht.readHumidity();
     t = dht.readTemperature();
+    lm=millis();
     // If you want to display measurements to LCD
     // you probably want to do it more or less like
     // this:
