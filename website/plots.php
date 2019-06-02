@@ -14,12 +14,6 @@
 */
 require 'config.php';
 
-if(!isset($_GET['lang'])) {
-  require "lang-$DEFAULT_LANG.php";
-}
-else if(file_exists("lang-".$_GET['lang'].".php")) {
-  require "lang-".$_GET['lang'].".php";
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -119,7 +113,7 @@ while($r2 = mysqli_fetch_row($qqq)) {
 }
 ?>
     </select>
-    <button onClick='plotPlot()'>Refresh</button><br/>
+    <button onClick='plotPlot()'><?=$LANG_REFRESH;?></button><br/>
     <span class='ninja smalltext'>
       <a href='https://github.com/LukaszMoskala/OpenDHT' class='ninjalink'>OpenDHT</a> &copy; 2019 Łukasz Konrad Moskała &lt;<a class='ninjalink' href='mailto:lm@lukaszmoskala.pl'>lm@lukaszmoskala.pl</a>&gt;<br/>
       <?=$LANG_PLOTLY_CREDIT;?><br/>

@@ -15,13 +15,6 @@
 */
 require 'config.php';
 
-if(!isset($_GET['lang'])) {
-  require "lang-$DEFAULT_LANG.php";
-}
-else if(file_exists("lang-".$_GET['lang'].".php")) {
-  require "lang-".$_GET['lang'].".php";
-}
-
 $where="WHERE `sensorid`='1'";
 if(isset($_GET['sensorid'])) {
   $where="WHERE `sensorid`='".$mysqli->real_escape_string($_GET['sensorid'])."'";
