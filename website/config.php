@@ -10,6 +10,8 @@ $DB_USER = "dht";
 $DB_PASS = "";
 $DB_DATABASE = "dht";
 
+$DEFAULT_LANG = 'pl';
+
 $mysqli=mysqli_connect("localhost", "dht","","dht");
 if(!$mysqli)
   die(mysqli_error($mysqli));
