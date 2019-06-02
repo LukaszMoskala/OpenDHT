@@ -36,7 +36,8 @@ require 'config.php';
                 x: data.ts,
                 type: 'scatter',
                 name: '<?=$LANG_TEMPERATURE;?>',
-                hoverinfo: 'all'
+                hoverinfo: 'all',
+                line: {shape: 'spline'}
               };
             var d2 = 
               {
@@ -45,7 +46,8 @@ require 'config.php';
                 type: 'scatter',
                 name: '<?=$LANG_HUMIDITY;?>',
                 yaxis: 'y2',
-                hoverinfo: 'all'
+                hoverinfo: 'all',
+                line: {shape: 'spline'}
               }
             ;
             var ddd = [d1, d2];
