@@ -13,9 +13,8 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-
-//This is a website
 require 'config.php';
+
 $where="WHERE `sensorid`='1'";
 if(isset($_GET['sensorid'])) {
   $where="WHERE `sensorid`='".$mysqli->real_escape_string($_GET['sensorid'])."'";
@@ -25,23 +24,12 @@ $q=$mysqli->query("SELECT `ts`,`temp`,`hum` FROM `data` $where ORDER BY `ts` DES
 if(!$q)
   die(mysqli_error($mysqli));
 $r=mysqli_fetch_assoc($q);
-if(isset($_GET['raw'])) {
-  header("Content-type: text/plain");
-  header("Cache-Control: no-cache");
-  echo $r['temp'].' '.$r['hum'].' '.$r['ts'];
-}
-else if(isset($_GET['json'])) {
-  header("Content-type: application/json");
-  header("Cache-Control: no-cache");
-  echo json_encode($r);
-}
-else{
-  header("Cache-Control: no-cache");
+header("Cache-Control: no-cache");
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OpenDHT</title>
+    <title><?=$LANG_TITLE;?></title>
     <link href='style.css' rel='stylesheet'>
     <script type="text/javascript">
       function fetchData() {
@@ -55,26 +43,21 @@ else{
           }
         }
         var sensorid=document.getElementById('sensorselect').value;
-        xmlHttp.open("GET", location.href+"?json=1&sensorid="+sensorid, true);
+        xmlHttp.open("GET", "fetch-latest-data.php?json=1&sensorid="+sensorid, true);
         xmlHttp.send(null);
       }
       function test_javascript() {
-        document.getElementById('jstest').innerHTML="Auto-refresh enabled<br>";
+        document.getElementById('jstest').innerHTML="<?=$LANG_AUTOREFRESH;?><br>";
         setInterval(fetchData, 300000);
       }
     </script>
   </head>
   <body onLoad='test_javascript()'>
     <noscript>
-      Warning: Javascript is used for auto-refresh feature<br/>
-      However, you'r browser either doesn't support it, or<br/>
-      it's disabled. Auto-refresh will not work, you have to<br/>
-      refresh page manually.<br/>
+    <?=$LANG_JSOFF_WARN;?><br/>
     </noscript>
     <select id=sensorselect onChange='fetchData()'>
 <?php
-
-
 $qqq=$mysqli->query("SELECT `location`,`type`,`id` FROM `sensors`");
 while($r2 = mysqli_fetch_row($qqq)) {
   $id=$r2[2];
@@ -84,20 +67,17 @@ while($r2 = mysqli_fetch_row($qqq)) {
 }
 ?>
     </select><br/>
-    <label for='temp' class='lbl'>Temperature</label><br/><span class='value' id=temp><?=$r['temp']; ?>&#176;C</span><br/>
-    <label for='hum' class='lbl'>Humidity</label><br/><span class='value' id=hum><?=$r['hum']; ?>%</span><br/>
+    <label for='temp' class='lbl'><?=$LANG_TEMPERATURE;?></label><br/><span class='value' id=temp><?=$r['temp']; ?>&#176;C</span><br/>
+    <label for='hum' class='lbl'><?=$LANG_HUMIDITY;?></label><br/><span class='value' id=hum><?=$r['hum']; ?>%</span><br/>
     <br/>
-    <a class='ninjalink' href='plots-en.php'>Plots</a><br/>
+    <a class='ninjalink' href='plots.php'><?=$LANG_PLOTS;?></a><br/>
     <span class='ninja'>
-      Timestamp: <span id=ts><?=$r['ts']; ?></span><br/>
+    <?=$LANG_TIMESTAMP;?>: <span id=ts><?=$r['ts']; ?></span><br/>
     </span>
     <span id=jstest class=ninja></span>
     <span class='ninja smalltext'>
       <a href='https://github.com/LukaszMoskala/OpenDHT' class='ninjalink'>OpenDHT</a> &copy; 2019 Łukasz Konrad Moskała &lt;<a class='ninjalink' href='mailto:lm@lukaszmoskala.pl'>lm@lukaszmoskala.pl</a>&gt;<br/>
-      <a href='https://plot.ly' class='ninjalink'>Plot.ly</a> is used to generate plots<br/>
+      <?=$LANG_PLOTLY_CREDIT;?><br/>
     </span>
   </body>
 </html>
-
-<?php
-}

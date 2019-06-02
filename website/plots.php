@@ -12,15 +12,16 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+require 'config.php';
+
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OpenDHT - Wykresy</title>
+    <title><?=$LANG_TITLE; ?> - <?=$LANG_PLOTS;?></title>
     <link href='style.css' rel='stylesheet'>
     <link href='DatePickerX.min.css' rel='stylesheet'>
     <script src="plotly.min.js"></script>
-    <script src="plotly-locale-pl.js"></script>
     <script src="DatePickerX.min.js"></script>
     <script type="text/javascript">
       function plotPlot() {
@@ -34,7 +35,7 @@
                 y: data.temp,
                 x: data.ts,
                 type: 'scatter',
-                name: 'Temperatura',
+                name: '<?=$LANG_TEMPERATURE;?>',
                 hoverinfo: 'all'
               };
             var d2 = 
@@ -42,7 +43,7 @@
                 y: data.hum,
                 x: data.ts,
                 type: 'scatter',
-                name: 'Wilgotność',
+                name: '<?=$LANG_HUMIDITY;?>',
                 yaxis: 'y2',
                 hoverinfo: 'all'
               }
@@ -55,14 +56,14 @@
               plot_bgcolor: '#333333',
               paper_bgcolor: '#222222',
               yaxis: {
-                title: 'Temperatura',
+                title: '<?=$LANG_TEMPERATURE;?>',
                 titlefont: {color: '#fff'},
                 tickfont: {color: '#fff'},
                 side: 'left',
                 fixedrange: true
               },
               yaxis2: {
-                title: 'Wilgotność',
+                title: '<?=$LANG_HUMIDITY;?>',
                 titlefont: {color: '#fff'},
                 tickfont: {color: '#fff'},
                 overlaying: 'y',
@@ -100,12 +101,9 @@
   </head>
   <body onLoad='plotPlot()'>
     <div id='plot1'></div>
-    <input type='text' id='date_input' placeholder='RRRR-MM-DD'>
-    <select id=sensorselect onChange='fetchData()'>
+    <input type='text' id='date_input' onChange='plotPlot()' placeholder='<?=$LANG_DATE_FORMAT;?>'>
+    <select id=sensorselect onChange='plotPlot()'>
 <?php
-
-require 'config.php';
-
 $qqq=$mysqli->query("SELECT `location`,`type`,`id` FROM `sensors`");
 while($r2 = mysqli_fetch_row($qqq)) {
   $id=$r2[2];
@@ -115,10 +113,10 @@ while($r2 = mysqli_fetch_row($qqq)) {
 }
 ?>
     </select>
-    <button onClick='plotPlot()'>Odśwież</button><br/>
+    <button onClick='plotPlot()'><?=$LANG_REFRESH;?></button><br/>
     <span class='ninja smalltext'>
       <a href='https://github.com/LukaszMoskala/OpenDHT' class='ninjalink'>OpenDHT</a> &copy; 2019 Łukasz Konrad Moskała &lt;<a class='ninjalink' href='mailto:lm@lukaszmoskala.pl'>lm@lukaszmoskala.pl</a>&gt;<br/>
-      <a href='https://plot.ly' class='ninjalink'>Plot.ly</a> jest używane do generowania wykresów<br/>
+      <?=$LANG_PLOTLY_CREDIT;?><br/>
     </span>
   </body>
 </html>
