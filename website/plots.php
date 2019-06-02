@@ -101,8 +101,8 @@ require 'config.php';
   </head>
   <body onLoad='plotPlot()'>
     <div id='plot1'></div>
-    <input type='text' id='date_input' placeholder='<?=$LANG_DATE_FORMAT;?>'>
-    <select id=sensorselect onChange='fetchData()'>
+    <input type='text' id='date_input' onChange='plotPlot()' placeholder='<?=$LANG_DATE_FORMAT;?>'>
+    <select id=sensorselect onChange='plotPlot()'>
 <?php
 $qqq=$mysqli->query("SELECT `location`,`type`,`id` FROM `sensors`");
 while($r2 = mysqli_fetch_row($qqq)) {
