@@ -12,6 +12,10 @@ $DB_DATABASE = "dht";
 
 $DEFAULT_LANG = 'pl';
 
+//60 000 ms is 60 seconds
+//300 000 ms is 5 minutes
+$AUTOREFRESH_DELAY = 60000;
+
 $used_lang=$DEFAULT_LANG;
 
 if(isset($_GET['lang'])) {

@@ -16,6 +16,9 @@
 //to run script every 5 minutes, you can use:
 
 //0,5,10,15,20,25,30,35,40,50,55 * * * * /usr/bin/php -f /var/www/fetchdata.php
+
+//to run every minute:
+// * * * * * /usr/bin/php -f /var/www/fetchdata.php
 if(php_sapi_name() != "cli")
   die("I probably shouldn't be run this way");
 

@@ -48,7 +48,7 @@ header("Cache-Control: no-cache");
       }
       function test_javascript() {
         document.getElementById('jstest').innerHTML="<?=$LANG_AUTOREFRESH;?><br>";
-        setInterval(fetchData, 300000);
+        setInterval(fetchData, <?=$AUTOREFRESH_DELAY;?>);
       }
     </script>
   </head>
