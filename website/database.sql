@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas generowania: 01 Cze 2019, 11:32
+-- Czas generowania: 03 Cze 2019, 11:38
 -- Wersja serwera: 5.7.26-0ubuntu0.16.04.1
 -- Wersja PHP: 7.0.33-0ubuntu0.16.04.4
 
@@ -37,7 +37,8 @@ CREATE TABLE `sensors` (
   `id` int(11) NOT NULL,
   `addr` varchar(64) NOT NULL,
   `location` text NOT NULL,
-  `type` enum('esp8266-http','local-tmp','local-shm','esp8266-tcp','fakesensor') NOT NULL DEFAULT 'esp8266-http'
+  `type` enum('esp8266-http','local-tmp','local-shm','esp8266-tcp','fakesensor') NOT NULL DEFAULT 'esp8266-http',
+  `reading_enabled` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
