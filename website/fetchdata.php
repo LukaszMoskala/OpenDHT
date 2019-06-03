@@ -39,7 +39,10 @@ while($r = mysqli_fetch_row($qqq)) {
     $data="";
     echo "$type is not implemented yet.\n";
   }
-  if(strlen($data) > 0) {
+  if($data == "Sensor failed") {
+    $mysqli->query("UPDATE `sensors` SET `reading_enabled`='0' WHERE `id`='".$r[2]."'")
+  }
+  else if(strlen($data) > 0) {
     $x=explode(" ",$data);
     if(!isset($x[0])) {
       continue;
