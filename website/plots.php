@@ -96,6 +96,10 @@ require 'config.php';
           var myDatepicker = document.getElementById('date_input');
           myDatepicker.DatePickerX.init({
             format: "yyyy-mm-dd",
+            <?=$DATEPICKER_MONTHS_ARRAY;?>
+            <?=$DATEPICKER_WEEKDAYS_ARRAY;?>
+            todayButton: false,
+            clearButtonLabel: "<?=$DATEPICKER_CLEAR_BUTTON;?>",
             maxDate: new Date()
           });
         });

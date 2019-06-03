@@ -11,3 +11,6 @@ $LANG_AVRORA_CREDIT = "Avrora Team dostarcza bibliotekę do wyboru daty";
 $LANG_DATE_FORMAT="RRRR-MM-DD";
 $LANG_REFRESH="Odśwież";
 $LANG_STATUS_PAGE="Odczyt na żywo";
+$DATEPICKER_MONTHS_ARRAY = "singleMonthLabels: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],";
+$DATEPICKER_WEEKDAYS_ARRAY = "weekDayLabels: ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'So', 'Nie'],";
+$DATEPICKER_CLEAR_BUTTON = "Wyczyść";

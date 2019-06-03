@@ -11,3 +11,6 @@ $LANG_AVRORA_CREDIT = "Avrora Team provides datepicker library";
 $LANG_DATE_FORMAT="YYYY-MM-DD";
 $LANG_REFRESH="Refresh";
 $LANG_STATUS_PAGE="Live sensor reading";
+$DATEPICKER_MONTHS_ARRAY = "singleMonthLabels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']";
+$DATEPICKER_WEEKDAYS_ARRAY = "weekDayLabels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'St', 'Su'],";
+$DATEPICKER_CLEAR_BUTTON = "Clear";
