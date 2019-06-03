@@ -58,26 +58,24 @@ header("Cache-Control: no-cache");
     </noscript>
     <select id=sensorselect onChange='fetchData()'>
 <?php
-$qqq=$mysqli->query("SELECT `location`,`type`,`id` FROM `sensors`");
+$qqq=$mysqli->query("SELECT `location`,`id` FROM `sensors`");
 while($r2 = mysqli_fetch_row($qqq)) {
-  $id=$r2[2];
-  $type=$r2[1];
+  $id=$r2[1];
   $loc=$r2[0];
-  echo "<option value='$id'>$loc - $type</option>";
+  echo "<option value='$id'>$loc</option>";
 }
 ?>
     </select><br/>
     <label for='temp' class='lbl'><?=$LANG_TEMPERATURE;?></label><br/><span class='value' id=temp><?=$r['temp']; ?>&#176;C</span><br/>
     <label for='hum' class='lbl'><?=$LANG_HUMIDITY;?></label><br/><span class='value' id=hum><?=$r['hum']; ?>%</span><br/>
     <br/>
-    <a class='ninjalink' href='plots.php'><?=$LANG_PLOTS;?></a><br/>
     <span class='ninja'>
-    <?=$LANG_TIMESTAMP;?>: <span id=ts><?=$r['ts']; ?></span><br/>
+      <?=$LANG_TIMESTAMP;?>: <span id=ts><?=$r['ts']; ?></span><br/>
     </span>
-    <span id=jstest class=ninja></span>
+    <a class='ninjalink' href='plots.php'><?=$LANG_PLOTS;?></a><br/>
+    <span id=jstest class='ninja smalltext'></span>
     <span class='ninja smalltext'>
       <a href='https://github.com/LukaszMoskala/OpenDHT' class='ninjalink'>OpenDHT</a> &copy; 2019 Łukasz Konrad Moskała &lt;<a class='ninjalink' href='mailto:lm@lukaszmoskala.pl'>lm@lukaszmoskala.pl</a>&gt;<br/>
-      <?=$LANG_PLOTLY_CREDIT;?><br/>
     </span>
   </body>
 </html>
