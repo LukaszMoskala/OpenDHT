@@ -58,12 +58,11 @@ header("Cache-Control: no-cache");
     </noscript>
     <select id=sensorselect onChange='fetchData()'>
 <?php
-$qqq=$mysqli->query("SELECT `location`,`type`,`id` FROM `sensors`");
+$qqq=$mysqli->query("SELECT `location`,`id` FROM `sensors`");
 while($r2 = mysqli_fetch_row($qqq)) {
-  $id=$r2[2];
-  $type=$r2[1];
+  $id=$r2[1];
   $loc=$r2[0];
-  echo "<option value='$id'>$loc - $type</option>";
+  echo "<option value='$id'>$loc</option>";
 }
 ?>
     </select><br/>
