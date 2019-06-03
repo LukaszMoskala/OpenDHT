@@ -26,3 +26,7 @@ body {
 .smalltext {
   font-size: 80%;
 }
+input, select, button {
+  color: white;
+  background: #444444;
+}
