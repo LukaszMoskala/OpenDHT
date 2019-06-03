@@ -95,7 +95,8 @@ require 'config.php';
         {
           var myDatepicker = document.getElementById('date_input');
           myDatepicker.DatePickerX.init({
-            format: "yyyy-mm-dd"
+            format: "yyyy-mm-dd",
+            maxDate: new Date()
           });
         });
     </script>
