@@ -53,7 +53,6 @@ require 'config.php';
             var ddd = [d1, d2];
             var layout = {
               showlegend: false,
-              title: 'OpenDHT',
               titlefont: {color: '#fff'},
               plot_bgcolor: '#333333',
               paper_bgcolor: '#222222',
@@ -103,7 +102,7 @@ require 'config.php';
   </head>
   <body onLoad='plotPlot()'>
     <div id='plot1'></div>
-    <input type='text' id='date_input' onChange='plotPlot()' placeholder='<?=$LANG_DATE_FORMAT;?>'>
+    <input type='text' id='date_input' onChange='plotPlot()' size='10' placeholder='<?=$LANG_DATE_FORMAT;?>'>
     <select id=sensorselect onChange='plotPlot()'>
 <?php
 $qqq=$mysqli->query("SELECT `location`,`id` FROM `sensors`");
@@ -116,8 +115,10 @@ while($r2 = mysqli_fetch_row($qqq)) {
     </select>
     <button onClick='plotPlot()'><?=$LANG_REFRESH;?></button><br/>
     <span class='ninja smalltext'>
+      <a href='website.php' class='ninjalink'><?=$LANG_STATUS_PAGE;?></a><br/>
       <a href='https://github.com/LukaszMoskala/OpenDHT' class='ninjalink'>OpenDHT</a> &copy; 2019 Łukasz Konrad Moskała &lt;<a class='ninjalink' href='mailto:lm@lukaszmoskala.pl'>lm@lukaszmoskala.pl</a>&gt;<br/>
       <?=$LANG_PLOTLY_CREDIT;?><br/>
+      <?=$LANG_AVRORA_CREDIT;?><br/>
     </span>
   </body>
 </html>

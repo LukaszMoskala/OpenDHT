@@ -22,6 +22,7 @@ body {
 .ninjalink {
   text-decoration: none;
   color: #666666;
+  font-size: inherit;
 }
 .smalltext {
   font-size: 80%;
