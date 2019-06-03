@@ -29,15 +29,15 @@ if(isset($_GET['lang']) && !$FORCE_LANG) {
   $l = str_replace("/","",$l);
   $l = str_replace("\\","",$l);
   $l = str_replace(".","",$l);
-  if(file_exists("lang-$l.php")) {
-    require "lang-$l.php";
+  if(file_exists("lang/$l.php")) {
+    require "lang/$l.php";
     $used_lang=$l;
   }
 }
 
 if(!isset($LANG_TITLE) || $FORCE_LANG) {
   //lang not loaded, load default
-  require "lang-$DEFAULT_LANG.php";
+  require "lang/$DEFAULT_LANG.php";
 }
 $mysqli=mysqli_connect("localhost", "dht","","dht");
 if(!$mysqli)
