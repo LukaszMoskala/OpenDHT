@@ -24,9 +24,8 @@
 //Averaging:
 // - more stable reading
 // - less responsivness
-// - untested (yet)
 #define TEMP_AVG_SAMPLES 10
-#define HUM_AVG_SAMPLES 10
+#define HUM_AVG_SAMPLES 30
 
 #define SERVER_PORT 80 //port 80 is default HTTP port
 
