@@ -21,7 +21,7 @@ if(php_sapi_name() != "cli")
 
 require 'config.php';
 
-$qqq=$mysqli->query("SELECT `addr`,`type`,`id` FROM `sensors`");
+$qqq=$mysqli->query("SELECT `addr`,`type`,`id` FROM `sensors` WHERE `reading_enabled`='1'");
 while($r = mysqli_fetch_row($qqq)) {
   $addr=$r[0];
   $type=$r[1];
