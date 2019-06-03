@@ -21,6 +21,12 @@
 #define SENSOR_PIN D7
 #define SENSOR_TYPE DHT22
 
+//Averaging:
+// - more stable reading
+// - less responsivness
+#define TEMP_AVG_SAMPLES 10
+#define HUM_AVG_SAMPLES 30
+
 #define SERVER_PORT 80 //port 80 is default HTTP port
 
 #define WIFI_SSID "put-your-wifi-ssid-here"
@@ -37,8 +43,12 @@ DHT dht(SENSOR_PIN, SENSOR_TYPE);
 ESP8266WebServer server(SERVER_PORT);
 //temperature
 float t=0;
+float tavg[TEMP_AVG_SAMPLES];
+uint8_t tavgi=0;
 //humidity
 float h=0;
+float havg[HUM_AVG_SAMPLES];
+uint8_t havgi=0;
 //last measurement
 uint32_t lm=0;
 
@@ -65,6 +75,15 @@ void handleRootPath() {
 void setup() {
   //initialize sensor
   dht.begin();
+
+  //initialize averaging table
+  h = dht.readHumidity();
+  t = dht.readTemperature();
+  for(uint8_t i=0;i<TEMP_AVG_SAMPLES;i++)
+    tavg[i]=t;
+  for(uint8_t i=0;i<HUM_AVG_SAMPLES;i++)
+    havg[i]=h;
+  
   //set wifi mode to STA
   //(disable builtin access point)
   WiFi.mode(WIFI_STA);
@@ -84,8 +103,23 @@ void setup() {
 void loop() {
   //read temperature every 5 seconds
   if(millis() - lm > 5000) {
-    h = dht.readHumidity();
-    t = dht.readTemperature();
+    tavg[tavgi++]=dht.readTemperature();
+    havg[havgi++]=dht.readHumidity();
+    if(tavgi == TEMP_AVG_SAMPLES)
+      tavgi=0;
+    if(havgi == HUM_AVG_SAMPLES)
+      havgi=0;
+    t=0.0;
+    h=0.0;
+    for(uint8_t i=0;i<TEMP_AVG_SAMPLES;i++) {
+      t+=tavg[i];
+    }
+    for(uint8_t i=0;i<HUM_AVG_SAMPLES;i++) {
+      h+=havg[i];
+    }
+    t/=(float)TEMP_AVG_SAMPLES;
+    h/=(float)HUM_AVG_SAMPLES;
+
     lm=millis();
     // If you want to display measurements to LCD
     // you probably want to do it more or less like
