@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas generowania: 04 Cze 2019, 13:26
+-- Czas generowania: 04 Cze 2019, 13:28
 -- Wersja serwera: 5.7.26-0ubuntu0.16.04.1
 -- Wersja PHP: 7.0.33-0ubuntu0.16.04.4
 
@@ -25,7 +25,7 @@ CREATE TABLE `data` (
   `temp` double NOT NULL,
   `hum` double NOT NULL,
   `sensorid` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
