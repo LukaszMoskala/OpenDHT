@@ -16,3 +16,6 @@ $DATEPICKER_WEEKDAYS_ARRAY = "weekDayLabels: ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', '
 $DATEPICKER_CLEAR_BUTTON = "Wyczyść";
 $RANGE_SPECIFIC_DATE="Konkretna data";
 $RANGE_LAST_HOUR="Ostatnia godzina";
+
+//this is optional
+$PLOTLY_TRANSLATION_FILE="plotly-locale-pl.js";

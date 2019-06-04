@@ -23,6 +23,11 @@ require 'config.php';
     <link href='style.css' rel='stylesheet'>
     <link href='DatePickerX.min.css' rel='stylesheet'>
     <script src="plotly.min.js"></script>
+    <?php
+      if(isset($PLOTLY_TRANSLATION_FILE)) {
+        echo "<script src='$PLOTLY_TRANSLATION_FILE'></script>";
+      }
+    ?>
     <script src="DatePickerX.min.js"></script>
     <script type="text/javascript">
       function plotPlot() {
