@@ -83,17 +83,22 @@ require 'config.php';
         }
         var dh=document.getElementById('date_input');
         var sensorid=document.getElementById('sensorselect').value;
-        if(dh.value.length > 0) {
-          xmlHttp.open("GET", "fetch-plot-data.php?date="+dh.value+"&sensorid="+sensorid, true);
+        var range=document.getElementById('typeselect').value;
+        var req="fetch-plot-data.php?sensorid="+sensorid;
+        if(dh.value.length > 0 && range == 1) {
+          req="fetch-plot-data.php?date="+dh.value+"&sensorid="+sensorid;
         }
-        else {
-          xmlHttp.open("GET", "fetch-plot-data.php?sensorid="+sensorid, true);
+        else if(range > 1) {
+          req="fetch-plot-data.php?range="+range+"&sensorid="+sensorid;
         }
+        console.log("Gimme dat plot: "+req);
+        xmlHttp.open("GET",req,true);
         xmlHttp.send(null);
       }
-      window.addEventListener('DOMContentLoaded', function()
-        {
-          var myDatepicker = document.getElementById('date_input');
+      function DatePickerBullshit() {
+        if(document.getElementById('typeselect').value != '1')
+          return;
+        var myDatepicker = document.getElementById('date_input');
           myDatepicker.DatePickerX.init({
             format: "yyyy-mm-dd",
             <?=$DATEPICKER_MONTHS_ARRAY;?>
@@ -102,12 +107,42 @@ require 'config.php';
             clearButtonLabel: "<?=$DATEPICKER_CLEAR_BUTTON;?>",
             maxDate: new Date()
           });
-        });
+      }
+      function processMyValueBitch(h) {
+        var di=document.getElementById('date_input');
+        var v=h.value;
+        console.log("Processing your value, bitch");
+        console.log("v: "+v);
+        if(v == 1) {
+          di.value="";
+          di.disabled=false;
+          di.type="text";
+          console.log("Enabled date input");
+          DatePickerBullshit();
+        }
+        else {
+          di.value = "";
+          console.log("Disabled date input");
+          document.getElementById('date_input').DatePickerX.remove();
+          di.disabled=true;
+          di.type="hidden";
+
+        }
+        plotPlot();
+      }
+      function BodyFuckingLoad() {
+        DatePickerBullshit();
+        plotPlot();
+      }
     </script>
   </head>
-  <body onLoad='plotPlot()'>
+  <body onLoad='BodyFuckingLoad()'>
     <div id='plot1'></div>
     <input type='text' id='date_input' onChange='plotPlot()' size='10' placeholder='<?=$LANG_DATE_FORMAT;?>'>
+    <select id='typeselect' onChange='processMyValueBitch(this)'>
+      <option value='1' selected='1'>Specific date</option>
+      <option value='2'>Last hour</option>
+    </select>
     <select id=sensorselect onChange='plotPlot()'>
 <?php
 $qqq=$mysqli->query("SELECT `location`,`id` FROM `sensors`");

@@ -13,20 +13,25 @@
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-$whereval="CURRENT_DATE()";
+$whereval="AND date(`ts`)=CURRENT_DATE()";
 
 
 require 'config.php';
-
 if(isset($_GET['date'])) {
-  $whereval = "'".$mysqli->real_escape_string($_GET['date'])."'";
+  $whereval = "AND date(`ts`)='".$mysqli->real_escape_string($_GET['date'])."'";
+}
+if(isset($_GET['range'])) {
+  $a=$_GET['range'];
+  if($a == "2") {
+    $whereval = "AND `ts` >= DATE_SUB(NOW(),INTERVAL 1 HOUR)";
+  }
 }
 $sid=1;
 if(isset($_GET['sensorid'])) {
   $sid=$mysqli->real_escape_string($_GET['sensorid']);
 }
 
-$q=$mysqli->query("SELECT `ts`,`temp`,`hum` FROM `data` WHERE date(`ts`) = $whereval AND `sensorid`='$sid' ORDER BY `ts` ASC");
+$q=$mysqli->query("SELECT `ts`,`temp`,`hum` FROM `data` WHERE `sensorid`='$sid' $whereval ORDER BY `ts` ASC");
 if(!$q)
   die(mysqli_error($mysqli));
 
