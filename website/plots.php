@@ -18,6 +18,7 @@ require 'config.php';
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <title><?=$LANG_TITLE; ?> - <?=$LANG_PLOTS;?></title>
     <link href='style.css' rel='stylesheet'>
     <link href='DatePickerX.min.css' rel='stylesheet'>
