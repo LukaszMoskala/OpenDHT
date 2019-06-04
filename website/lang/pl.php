@@ -14,3 +14,5 @@ $LANG_STATUS_PAGE="Odczyt na żywo";
 $DATEPICKER_MONTHS_ARRAY = "singleMonthLabels: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],";
 $DATEPICKER_WEEKDAYS_ARRAY = "weekDayLabels: ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'So', 'Nie'],";
 $DATEPICKER_CLEAR_BUTTON = "Wyczyść";
+$RANGE_SPECIFIC_DATE="Konkretna data";
+$RANGE_LAST_HOUR="Ostatnia godzina";

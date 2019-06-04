@@ -131,6 +131,7 @@ require 'config.php';
         plotPlot();
       }
       function BodyFuckingLoad() {
+        processMyValueBitch(document.getElementById('typeselect'));
         DatePickerBullshit();
         plotPlot();
       }
@@ -140,8 +141,8 @@ require 'config.php';
     <div id='plot1'></div>
     <input type='text' id='date_input' onChange='plotPlot()' size='10' placeholder='<?=$LANG_DATE_FORMAT;?>'>
     <select id='typeselect' onChange='processMyValueBitch(this)'>
-      <option value='1' selected='1'>Specific date</option>
-      <option value='2'>Last hour</option>
+      <option value='1' selected='1'><?=$RANGE_SPECIFIC_DATE;?></option>
+      <option value='2'><?=$RANGE_LAST_HOUR;?></option>
     </select>
     <select id=sensorselect onChange='plotPlot()'>
 <?php

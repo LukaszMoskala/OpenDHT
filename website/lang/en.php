@@ -14,3 +14,5 @@ $LANG_STATUS_PAGE="Live sensor reading";
 $DATEPICKER_MONTHS_ARRAY = "singleMonthLabels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']";
 $DATEPICKER_WEEKDAYS_ARRAY = "weekDayLabels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'St', 'Su'],";
 $DATEPICKER_CLEAR_BUTTON = "Clear";
+$RANGE_SPECIFIC_DATE="Specific date";
+$RANGE_LAST_HOUR="Last hour";
