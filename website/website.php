@@ -29,6 +29,7 @@ header("Cache-Control: no-cache");
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <title><?=$LANG_TITLE;?></title>
     <link href='style.css' rel='stylesheet'>
     <script type="text/javascript">
