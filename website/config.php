@@ -42,3 +42,4 @@ if(!isset($LANG_TITLE) || $FORCE_LANG) {
 $mysqli=mysqli_connect("localhost", "dht","","dht");
 if(!$mysqli)
   die(mysqli_error($mysqli));
+$mysqli->set_charset("utf8");
