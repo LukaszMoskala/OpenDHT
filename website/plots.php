@@ -148,6 +148,7 @@ require 'config.php';
     <select id='typeselect' onChange='processMyValueBitch(this)'>
       <option value='1' selected='1'><?=$RANGE_SPECIFIC_DATE;?></option>
       <option value='2'><?=$RANGE_LAST_HOUR;?></option>
+      <option value='3'><?=$RANGE_24_HOURS;?></option>
     </select>
     <select id=sensorselect onChange='plotPlot()'>
 <?php

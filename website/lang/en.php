@@ -16,3 +16,4 @@ $DATEPICKER_WEEKDAYS_ARRAY = "weekDayLabels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'St'
 $DATEPICKER_CLEAR_BUTTON = "Clear";
 $RANGE_SPECIFIC_DATE="Specific date";
 $RANGE_LAST_HOUR="Last hour";
+$RANGE_24_HOURS="24 hours";

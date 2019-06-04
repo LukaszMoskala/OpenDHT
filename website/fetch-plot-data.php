@@ -25,6 +25,9 @@ if(isset($_GET['range'])) {
   if($a == "2") {
     $whereval = "AND `ts` >= DATE_SUB(NOW(),INTERVAL 1 HOUR)";
   }
+  if($a == "3") {
+    $whereval = "AND `ts` >= DATE_SUB(NOW(),INTERVAL 24 HOUR)";
+  }
 }
 $sid=1;
 if(isset($_GET['sensorid'])) {
