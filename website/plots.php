@@ -139,7 +139,6 @@ require 'config.php';
       function BodyFuckingLoad() {
         processMyValueBitch(document.getElementById('typeselect'));
         DatePickerBullshit();
-        plotPlot();
       }
     </script>
   </head>
