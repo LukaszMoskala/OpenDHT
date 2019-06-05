@@ -13,6 +13,7 @@ which connects to sensor, receives data, and saves it to MySQL database.
 
 On the same server, you can setup website that shows current temperature
 and humidity. You can see [live example here](https://lukaszmoskala.pl/OpenDHT/website.php?lang=en).
+Please note, that this live example is both my testing and production enviromment so it's often broken.
 # Plots
 Plots are generated in browser, using plot.ly. See example [here](https://lukaszmoskala.pl/OpenDHT/plots.php?lang=en)
 # Scripting API
