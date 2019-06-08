@@ -30,7 +30,13 @@ while($r = mysqli_fetch_row($qqq)) {
   $type=$r[1];
   $data="";
   if($type == 'esp8266-http') {
+    //ignore errors
+    //error causes $data to be empty
+    //and we handle that on our own
+    //that is, we don't insert data on failure
+    set_error_handler(function() { /* ignore errors */ });
     $data=file_get_contents("http://$addr/");
+    restore_error_handler();
   }
   else if($type == 'local-tmp') {
     $data=file_get_contents("/tmp/dht");
